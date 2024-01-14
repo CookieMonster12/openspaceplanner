@@ -1,0 +1,34 @@
+<app-modal-dialog title="Survey" (save)="save()" (close)="onClose()" (delete)="delete()" [showDeleteButton]="currentSurvey.id != null" [isShown]="isShown">
+
+  <!--All the available survey items of the current survey are listed here.-->
+  <div class="box" *ngFor="let surveyItem of currentSurvey.surveyItems">
+    <article class="media">
+      <div class="media-content">
+        <div class="content">{{ surveyItem.text }}</div>
+        <div class="">
+          <a (click)="deleteSurveyItem(surveyItem.id)">
+            <i class="fa fa-trash"></i>
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!--The form for creating new survey items for the survey.-->
+  <div class="field">
+    <label class="label">Text</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Text" id="text" [(ngModel)]="surveyItemInputFormText" />
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Rating type</label>
+    <div class="control">
+      <ng-select [items]="surveyItemRatingTypes" [(ngModel)]="currentSurveyItem.rating" [addTag]="false" [hideSelected]="false" [multiple]="false" appendTo="body" #surveyItemRatingTypesElement></ng-select>
+    </div>
+  </div>
+
+
+
+</app-modal-dialog>
+

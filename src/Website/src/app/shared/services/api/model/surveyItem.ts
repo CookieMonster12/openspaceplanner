@@ -9,12 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SurveyItemRating } from './surveyItemRating';
 
 
-export interface UpdateSlotRequest { 
+export interface SurveyItem { 
     id: string;
-    name: string;
-    time?: string | null;
-    isPlanable?: boolean | null;
+    text: string;
+    rating: SurveyItemRating;
 }
 

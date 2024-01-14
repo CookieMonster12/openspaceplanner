@@ -9,10 +9,16 @@
     </a>
   </h1>
 
-  <a class="calendar-button" href="{{ calendarLink }}">
-    <span class="fa fa-calendar fa-2x"></span>
-  </a>
+  <div class="link-line">
+    <a class="surveys-link" href="sessions/{{session.id}}/surveys/overview">
+      Surveys
+    </a>
 
+    <a class="calendar-button" href="{{ calendarLink }}">
+      <span class="fa fa-calendar fa-2x"></span>
+    </a>
+  </div>
+  
   <table class="table session-table is-striped is-fullwidth is-hoverable">
     <thead>
       <tr class="table-row">

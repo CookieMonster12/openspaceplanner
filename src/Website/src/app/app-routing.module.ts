@@ -3,10 +3,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { SessionComponent } from "./session/session.component";
 import { CreateSessionComponent } from "./create-session/create-session.component";
 import { SessionOverviewComponent } from "./session-overview/session-overview.component";
+import { SurveysOverviewComponent } from "./surveys-overview/surveys-overview.component";
 
 const routes: Routes = [
   { path: "sessions/:id",  component: SessionComponent },
-  { path: "sessions/:id/overview",  component: SessionOverviewComponent },
+  { path: "sessions/:id/overview", component: SessionOverviewComponent },
+  { path: "sessions/:id/surveys/overview", component: SurveysOverviewComponent },
   { path: "session/:id", redirectTo: "sessions/:id" },
   { path: "session/:id/overview", redirectTo: "sessions/:id/overview" },
   { path: "**",  component: CreateSessionComponent },

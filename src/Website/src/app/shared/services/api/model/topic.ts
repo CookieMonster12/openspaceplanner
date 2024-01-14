@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AddSurveyRequest } from './addSurveyRequest';
 import { Attendance } from './attendance';
 import { Feedback } from './feedback';
 import { Rating } from './rating';
@@ -25,6 +26,7 @@ export interface Topic {
     demands: Array<string>;
     feedback: Array<Feedback>;
     ratings: Array<Rating>;
+    survey: AddSurveyRequest;
     slots: number;
 }
 

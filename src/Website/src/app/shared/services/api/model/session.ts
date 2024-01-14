@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Survey } from './survey';
 import { Slot } from './slot';
 import { Topic } from './topic';
 import { Room } from './room';
@@ -21,6 +22,7 @@ export interface Session {
     rooms: Array<Room>;
     slots: Array<Slot>;
     topics: Array<Topic>;
+    surveys: Array<Survey>;
     votingEnabled: boolean;
     freeForAll: boolean;
     attendanceEnabled: boolean;

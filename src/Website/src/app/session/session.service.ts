@@ -5,7 +5,7 @@ import { lastValueFrom, Observable, Subject } from "rxjs";
 import { environment } from '../../environments/environment';
 import { SessionOptions } from "../models/sessionOptions";
 import { getRandomId } from "../shared/common";
-import { Attendance, Feedback, Rating, Room, Session, Slot, Topic } from '../shared/services/api';
+import { Attendance, Feedback, Rating, Room, Session, Slot, Topic, Survey } from '../shared/services/api';
 
 @Injectable()
 export class SessionService {
@@ -100,6 +100,10 @@ export class SessionService {
     return this.currentSession;
   }
 
+  public getAllSurveysOfSession(sessionId: number): Observable<Survey[]> {
+    return this.http.get<Survey[]>(`${environment.apiUrl}/api/sessions/${sessionId}/surveys`);
+  }
+
   public async updateTopic(topic: Topic): Promise<Topic> {
     const request = topic.id != null
       ? this.http.put(`${environment.apiUrl}/api/sessions/${this.currentSession.id}/topics/${topic.id}`, topic)
@@ -107,6 +111,15 @@ export class SessionService {
 
     const obj = await lastValueFrom(request);
     return this.updateInternal(this.currentSession.topics, obj as Topic);
+  }
+
+  public async updateSurvey(survey: Survey): Promise<Survey> {
+    const request = survey.id != null
+      ? this.http.put(`${environment.apiUrl}/api/sessions/${this.currentSession.id}/surveys/${survey.id}`, survey)
+      : this.http.post(`${environment.apiUrl}/api/sessions/${this.currentSession.id}/surveys/`, survey);
+
+    const obj = await lastValueFrom(request);
+    return this.updateInternal(this.currentSession.surveys, obj as Survey);
   }
 
   public async updateSlot(slot: Slot): Promise<Slot> {
@@ -194,6 +207,11 @@ export class SessionService {
   public async deleteTopic(id: string): Promise<void> {
     await lastValueFrom(this.http.delete(`${environment.apiUrl}/api/sessions/${this.currentSession.id}/topics/${id}`))
     return this.deleteInternal(this.currentSession.topics, id);
+  }
+
+  public async deleteSurvey(id: string): Promise<void> {
+    await lastValueFrom(this.http.delete(`${environment.apiUrl}/api/sessions/${this.currentSession.id}/surveys/${id}`))
+    return this.deleteInternal(this.currentSession.surveys, id);
   }
 
   public async deleteSlot(id: string): Promise<void> {
@@ -326,9 +344,11 @@ export class SessionService {
 
     this._hubConnection.on("updateSession", (session: Session) => this.currentSession = session);
     this._hubConnection.on("updateTopic", (topic: Topic) => this.updateInternal(this.currentSession.topics, topic));
+    this._hubConnection.on("updateSurvey", (survey: Survey) => this.updateInternal(this.currentSession.surveys, survey));
     this._hubConnection.on("updateRoom", (room: Room) => this.updateInternal(this.currentSession.rooms, room));
     this._hubConnection.on("updateSlot", (slot: Slot) => this.updateInternal(this.currentSession.slots, slot));
     this._hubConnection.on("deleteTopic", (id: string) => this.deleteInternal(this.currentSession.topics, id));
+    this._hubConnection.on("deleteSurvey", (id: string) => this.deleteInternal(this.currentSession.surveys, id));
     this._hubConnection.on("deleteRoom", (id: string) => this.deleteInternal(this.currentSession.rooms, id));
     this._hubConnection.on("deleteSlot", (id: string) => this.deleteInternal(this.currentSession.slots, id));
     this._hubConnection.on("deleteSession", () => this.sessionDeleted.next(null));

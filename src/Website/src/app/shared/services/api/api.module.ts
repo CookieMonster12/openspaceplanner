@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './api/config.service';
 import { SessionRoomsService } from './api/sessionRooms.service';
 import { SessionSlotsService } from './api/sessionSlots.service';
+import { SessionSurveysService } from './api/sessionSurveys.service';
 import { SessionTopicsService } from './api/sessionTopics.service';
 import { SessionTopicsAttendanceService } from './api/sessionTopicsAttendance.service';
 import { SessionTopicsFeedbackService } from './api/sessionTopicsFeedback.service';

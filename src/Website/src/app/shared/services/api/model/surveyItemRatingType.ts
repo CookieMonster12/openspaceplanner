@@ -11,10 +11,10 @@
  */
 
 
-export interface UpdateSlotRequest { 
-    id: string;
-    name: string;
-    time?: string | null;
-    isPlanable?: boolean | null;
-}
+export type SurveyItemRatingType = 'Interval' | 'YesNo';
+
+export const SurveyItemRatingType = {
+    Interval: 'Interval' as SurveyItemRatingType,
+    YesNo: 'YesNo' as SurveyItemRatingType
+};
 

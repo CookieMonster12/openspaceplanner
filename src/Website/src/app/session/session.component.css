@@ -87,8 +87,17 @@ h1 .edit-button {
   float: left;
 }
 
+.link-line {
+  display: inline block;
+}
+
+.surveys-link {
+  font-size: 22px;
+  margin-inline-end: 20px;
+}
+
 .calendar-button {
-  float: right;
+  /*float: right;*/
 }
 
 .slot-not-planable {

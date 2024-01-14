@@ -1,0 +1,20 @@
+<div class="content">
+  <h1>Surveys</h1>
+
+  <h4 class="no-surveys-available-message" *ngIf="surveysOfCurrentSession == null || surveysOfCurrentSession.length == 0">There are no surveys for this session yet.</h4>
+
+  <div>
+    <ul>
+      <li *ngFor="let survey of surveysOfCurrentSession">
+        <a href="session/{{session.id}}/surveys/{{survey.id}}">{{survey.name}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <button (click)="showModal($event, 'survey', {})" class="button is-link create-survey-button">Create survey</button>
+
+</div>
+
+<ng-container *ngIf="modalShown$ | async as modalShown">
+  <!--<app-create-survey-modal [isShown]="modalShown['survey']" (close)="hideModal('survey')" [item]="modalShown['survey']"></app-create-survey-modal>-->
+</ng-container>
