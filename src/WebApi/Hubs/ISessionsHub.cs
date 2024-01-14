@@ -10,6 +10,8 @@ public interface ISessionsHub
 
     Task DeleteSlot(string id);
 
+    Task DeleteSurvey(string surveyId);
+
     Task DeleteTopic(string id);
 
     Task UpdateRoom(Room room);
@@ -19,4 +21,6 @@ public interface ISessionsHub
     Task UpdateSlot(Slot slot);
 
     Task UpdateTopic(Topic topic);
+
+    Task UpdateSurvey(Survey survey);
 }
