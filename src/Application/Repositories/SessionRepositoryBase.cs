@@ -20,7 +20,8 @@ public abstract class SessionRepositoryBase : ISessionRepository
                 DateTime.Now.ToShortDateString(),
                 new List<Room>(),
                 new List<Slot>(),
-                new List<Topic>());
+                new List<Topic>(),
+                new List<Survey>());
 
             Sessions.Add(session);
 

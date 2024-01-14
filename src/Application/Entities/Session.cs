@@ -7,6 +7,7 @@ public record Session(
     ICollection<Room> Rooms,
     ICollection<Slot> Slots,
     ICollection<Topic> Topics,
+    ICollection<Survey> Surveys,
     bool VotingEnabled = false,
     bool FreeForAll = false,
     bool AttendanceEnabled = true,
